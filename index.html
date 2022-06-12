@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cadastro de Entidades</title>
+    <link rel="shortcut icon" type="imagex/png" href="Símbolo.jpeg">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+
+
+<body onload="init()">
+    
+    
+    <h1>CADASTRO</h1>
+    <center>
+        <img class="center" src="Símbolo-removebg-preview.png" height="400" width="400"></center>
+    
+
+
+    <div class="container">
+        <div class="row">
+            <div id="msg" class="col-sm-10 offset-sm-1 ">
+                <!--<div class="alert alert-warning">Contato não encontrado.</div>-->
+            </div>
+        </div>
+
+        <form id="form-contato">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <label for="inputId" style="color: white;">#</label>
+                    <input type="text" class="form-control" id="inputId" placeholder="#" disabled>
+                </div>
+                <div class="col-sm-8">
+                    <label for="inputNome" style="color: white;">NOME COMPLETO</label>
+                    <input type="text" class="form-control" id="inputNome" required placeholder="Informe seu nome completo">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-5">
+                    <label for="inputTelefone" style="color: white;">TELEFONE E/OU CELULAR</label>
+                    <input type="text" class="form-control" id="inputTelefone" required placeholder="Telefone">
+                </div>
+                <div class="col-sm-7">
+                    <label for="inputEmail" style="color: white;">EMAIL</label>
+                    <input type="email" class="form-control" id="inputEmail" required placeholder="Informe o e-mail">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="inputCidade" style="color: white;">CIDADE</label>
+                    <input type="text" class="form-control" id="inputCidade" placeholder="Informe sua cidade" >
+                </div>
+                <div class="col-sm-6">
+                    <label for="inputCategoria" style="color: white;">IDADE</label>
+                    <input type="text" class="form-control" id="inputCategoria" required placeholder="Informe sua idade">
+                </div>
+            </div>
+            <div class="form-group row">    
+                <div class="col-sm-12">
+                    <label for="inputSite" style="color: white;">PRODUTO DE INTERESSE</label>
+                    <input type="text" class="form-control" id="inputSite" required placeholder="Produto de Interesse">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <small>Preencher todos os campos (*)</small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <b><input type="button" class="btn btn-success" id="btnInsert" value="INSERIR" style="background-color:rgba(118, 112, 156, 0.801);border-color: black; color: white;"></b>
+                    <b><input type="button" class="btn btn-warning" id="btnUpdate" value="ALTERAR" style="background-color:rgba(118, 112, 156, 0.808);border-color: black; color: white;"></b>
+                    <b><input type="button" class="btn btn-danger" id="btnDelete" value="EXCLUIR" style="background-color:rgba(118, 112, 156, 0.808);border-color: black; color: white;"></b>
+                   <b><input type="button" class="btn btn-secondary" id="btnClear" value="LIMPAR" style="background-color:rgba(118, 112, 156, 0.801);border-color: black; color: white;"></b>
+                    <b><a href="lista_contatos.html"><input type="button" class="btn btn-warning" id="btnClear" value="PESQUISAR PESSOAS" style="background-color:rgba(118, 112, 156, 0.836);border-color: black; color: white"></b></a>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <table id="grid-contatos" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="color: rgb(255, 255, 255);">#
+                            <th scope="col" style="color: rgb(255, 255, 255);">NOME COMPLETO</th>
+                            <th scope="col" style="color: rgb(255, 255, 255);">TELEFONE E/OU CELULAR</th>
+                            <th scope="col" style="color: rgb(255, 255, 255);">EMAIL</th>
+                            <th scope="col" style="color: rgb(255, 255, 255);">CIDADE</th>
+                            <th scope="col" style="color: rgb(255, 255, 255);">IDADE</th>
+                            <th scope="col" style="color: rgb(255, 255, 255);">PRODUTO DE INTERESSE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-contatos">
+                        <tr>
+                            <td scope="row">1</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="app.js"></script>
+    <script>
+        function exibeContatos() {
+            
+            $("#table-contatos").html("");
+
+            
+            for (i = 0; i < db.data.length; i++) {
+                let contato = db.data[i];    
+                $("#table-contatos").append(`<tr><td scope="row">${contato.id}</td>
+                                                <td>${contato.nome}</td>
+                                                <td>${contato.telefone}</td>
+                                                <td>${contato.email}</td>
+                                                <td>${contato.cidade}</td>
+                                                <td>${contato.categoria}</td>
+                                                <td>${contato.website}</td>
+                                            </tr>`);
+            }
+        }
+
+        function init() {
+            // Adiciona funções para tratar os eventos 
+            $("#btnInsert").click(function () {
+                // Verfica se o formulário está preenchido corretamente
+                if (!$('#form-contato')[0].checkValidity()) {
+                    displayMessage("Preencha o formulário corretamente.");
+                    return;
+                }
+
+                // Obtem os valores dos campos do formulário
+                let campoNome = $("#inputNome").val();
+                let campoTelefone = $("#inputTelefone").val();
+                let campoEmail = $('#inputEmail').val();
+                let campoCidade = $("#inputCidade").val();
+                let campoCategoria = $('#inputCategoria').val();
+                let campoSite = $('#inputSite').val();
+                let contato = { nome: campoNome, 
+                    telefone: campoTelefone, 
+                    email: campoEmail, 
+                    cidade: campoCidade, 
+                    categoria: campoCategoria,
+                    website: campoSite };
+
+                insertContato(contato);
+
+                // Reexibe os contatos
+                exibeContatos();
+
+                // Limpa o formulario
+                $("#form-contato")[0].reset();
+            });
+
+            // Intercepta o click do botão Alterar
+            $("#btnUpdate").click(function () {
+                // Obtem os valores dos campos do formulário
+                let campoId = $("#inputId").val();
+                if (campoId == "") {
+                    displayMessage("Selecione um contato para ser alterado.");
+                    return;
+                }
+                let campoNome = $("#inputNome").val();
+                let campoTelefone = $("#inputTelefone").val();
+                let campoEmail = $("#inputEmail").val();
+                let campoCidade = $("#inputCidade").val();
+                let campoCategoria = $("#inputCategoria").val();
+                let campoSite = $('#inputSite').val();
+                let contato = { nome: campoNome, 
+                    telefone: campoTelefone, 
+                    email: campoEmail, 
+                    cidade: campoCidade, 
+                    categoria: campoCategoria,
+                    website: campoSite };
+
+                updateContato(parseInt(campoId), contato);
+
+                
+                exibeContatos();
+
+                
+                $("#form-contato")[0].reset();
+            });
+
+            
+            $("#btnDelete").click(function () {
+                let campoId = $("#inputId").val();
+                if (campoId == "") {
+                    displayMessage("Selecione um contato a ser excluído.");
+                    return;
+                }
+                deleteContato(parseInt(campoId));
+
+                
+                exibeContatos();
+
+                
+                $("#form-contato")[0].reset();
+            });
+
+            
+            $("#btnClear").click(function () {
+                $("#form-contato")[0].reset();
+            });
+
+            
+            $('#msg').bind("DOMSubtreeModified", function () {
+                window.setTimeout(function () {
+                    $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                        $(this).remove();
+                    });
+                }, 5000);
+            });
+
+            
+            $("#grid-contatos").on("click", "tr", function (e) {
+                let linhaContato = this;
+                colunas = linhaContato.querySelectorAll("td");
+
+                $("#inputId").val(colunas[0].innerText);
+                $("#inputNome").val(colunas[1].innerText);
+                $("#inputTelefone").val(colunas[2].innerText);
+                $("#inputEmail").val(colunas[3].innerText);
+                $("#inputCidade").val(colunas[4].innerText);
+                $("#inputCategoria").val(colunas[5].innerText);
+                $("#inputSite").val(colunas[6].innerText);
+            });
+
+            exibeContatos();
+        }
+        
+    </script>
+</body>
+
+</html>

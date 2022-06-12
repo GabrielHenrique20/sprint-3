@@ -1,0 +1,44 @@
+body{
+    background-image: url(imagens/jezael-melgoza-2FiXtdnVhjQ-unsplash.jpg);
+    background-repeat: no repeat;
+    background-size: cover;
+    background-position: left center;
+}
+
+label {
+    font-weight: bolder;
+}
+::placeholder {
+    color: rgb(0, 0, 0) !important;
+    opacity: 3;
+}
+::-webkit-input-placeholder {
+    color:  rgb(0, 0, 0) !important;
+}
+:-moz-placeholder {
+    color:  rgb(0, 0, 0) !important;
+    opacity:  3;
+ }
+ h1 {
+     text-align: center;
+     background-color: rgba(255, 235, 205, 0);
+
+ }
+ #msg {
+     height: 60px;
+ }
+ #grid-contatos tbody {
+     cursor: pointer;
+     background-color: rgba(255, 255, 255, 0.726);
+ }
+ p{
+     color: black;
+ }
+
+ 
+
+ 
+ 
+
+
+ 
